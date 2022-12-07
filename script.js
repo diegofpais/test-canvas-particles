@@ -12,6 +12,8 @@ class Particle {
     constructor(x, y){
         this.x = x;
         this.y = y;
+        this.XORIGIN = x;
+        this.YORIGIN = y;
         this.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // ToDo randomize
         this.angle = Math.random() * 360;
         this.speed = Math.random() * 4 - 2;
@@ -38,7 +40,7 @@ class Particle {
         ctx.fill();
 
         ctx.beginPath();
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.moveTo(this.XORIGIN, this.YORIGIN);
         ctx.lineTo(this.x, this.y);
         ctx.strokeStyle = this.color;
         ctx.stroke();
@@ -63,7 +65,7 @@ class Effect{
         }
     }
     distance(x, y){
-        const out = Math.hypot(x - canvas.width / 2, y - canvas.height / 2);
+        const out = Math.hypot(x - this.x, y - this.y);
         return out
     }
 
