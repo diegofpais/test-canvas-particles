@@ -14,7 +14,7 @@ class Particle {
         this.y = y;
         this.XORIGIN = x;
         this.YORIGIN = y;
-        this.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // ToDo randomize
+        this.color = 'white'//`hsl(${Math.random() * 360}, 100%, 50%)`; // ToDo randomize
         this.angle = Math.random() * 360;
         this.speed = Math.random() * 4 - 2;
         this.speedX = this.speed * Math.sin(this.angle);
