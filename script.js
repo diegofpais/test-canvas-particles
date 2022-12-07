@@ -15,7 +15,7 @@ class Particle {
         this.y = y;
         this.XORIGIN = x;
         this.YORIGIN = y;
-        this.color = 'white'//`hsl(${Math.random() * 360}, 100%, 50%)`; // ToDo randomize
+        this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
         this.angle = Math.random() * 360;
         this.speed = Math.random() * 4 - 2;
         this.speedX = this.speed * Math.sin(this.angle);
@@ -69,7 +69,13 @@ class Effect{
         const out = Math.hypot(x - this.x, y - this.y);
         return out
     }
-
+    updatePosition(){
+        canvas.addEventListener('click', e => {
+            this.x = e.x;
+            this.y = e.y;
+            this.particles = [];
+        })
+    }
     update(){
         for (let i = 0; i < this.particles.length; i++){
             this.particles[i].update();
@@ -95,7 +101,7 @@ let lastTime = 0;
 let fps = 65; // 20 frames per second
 let nextFrame = 1000 / fps; // 1 seg (1000 mseg) dividido por los cuadros por segundo = tiempo entre cuadros (tiempo que hay que esperar para dibujar el proximo cuadro)
 
-const effect1 = new Effect(canvas.width / 2, canvas.height / 2, 500, '90')
+const effect1 = new Effect(undefined, undefined, 500, '90')
 
 function animate(timeStamp){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -104,6 +110,7 @@ function animate(timeStamp){
     //ctx.fillRect(0, 0 , canvas.width, canvas.height)
     deltaTime = timeStamp - lastTime;
     if (deltaTime >= nextFrame){ // ver como ajustar a la frecuencia de refresco del monitor (de lo contrario titila)
+        effect1.updatePosition();
         effect1.loadParticles()
         effect1.update();
         lastTime = timeStamp;
