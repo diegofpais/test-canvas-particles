@@ -7,6 +7,7 @@ ctx.fillStyle = '#290760';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+//---------agregar interactividad
 
 class Particle {
     constructor(x, y){
